@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Document
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Document");
+            Console.Write("Name of document: ");
+            string name = "";
+            name = Console.ReadLine();
+            if(name == "")
+            {
+                Console.WriteLine("Sorry there was an error");
+                return;
+            }
+            Console.Write("What is the content of the document?: ");
+            string content = "";
+            content = Console.ReadLine();
+            if(content == "")
+            {
+                Console.WriteLine("Sorry there was an error");
+                return;
+            }
+            name = name + ".txt";
+            try
+            {
+                System.IO.StreamWriter swrite = new System.IO.StreamWriter(name);
+                swrite.Write(content);
+                swrite.Flush();
+                swrite.Close();
+                swrite = null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Oops! There was an error!");
+                return;
+            }
+            Console.WriteLine(name + " was succesfully saved. The document contains " + content.Length + " characters.");
+            
+        }
